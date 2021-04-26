@@ -16,13 +16,32 @@ public class Rol {
 	private Long id;
 	private String nombreRol;
 	
+	/*Asociacion bidireccional Rol-Usuario,Muchos a Uno*/
 	@ManyToOne
 	@JoinColumn(name= "usuario_id")
-	private Usuario usuario; 
+	private Usuario cliente; 
 	
+	/*Asociacion Unidireccional*/
 	@OneToOne
+	@JoinColumn(name= "permiso_id")
 	private Permiso permiso;
 	
+	public Usuario getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
+	}
+
+	public Permiso getPermiso() {
+		return permiso;
+	}
+
+	public void setPermiso(Permiso permiso) {
+		this.permiso = permiso;
+	}
+
 	public Rol() {
 		
 	}

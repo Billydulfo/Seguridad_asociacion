@@ -3,7 +3,9 @@ package mx.edu.uacm.seguridad.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,26 +13,26 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Usuario {
-	
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//private Long id;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String email;
 	private String password;
 	
-	@OneToMany(mappedBy="usuario")
+	/*Asociacion bidireccional Usuario-Rol, Uno a Muchos*/
+	@OneToMany(mappedBy="cliente", fetch= FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Rol> roles = new HashSet<>();
 	
+	public Set<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Rol> roles) {
+		this.roles = roles;
+	}
+
 	public Usuario() {
 		
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getEmail() {

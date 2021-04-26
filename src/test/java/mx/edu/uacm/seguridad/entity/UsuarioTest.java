@@ -1,5 +1,8 @@
 package mx.edu.uacm.seguridad.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -30,7 +33,29 @@ public class UsuarioTest {
 		
 		
 	}
-	
-	
 
+	@Test
+	@Transactional
+	@Rollback(false)
+	public void debeGuardarUsuarioRolTest() {
+		log.debug("esntrando a debe guardar usuario test");
+		Usuario usr = new Usuario();
+		usr.setEmail("pambolin@uacm.edu.mx");
+		usr.setPassword("123456789");
+		
+		Rol rol  =  new Rol();
+		rol.setNombreRol("Admin");
+		rol.setCliente(usr);
+		
+		Rol rol1  =  new Rol();
+		rol1.setNombreRol("user");
+		rol1.setCliente(usr);
+
+		Set<Rol> roles = new HashSet<>();
+		roles.add(rol);
+		roles.add(rol1);
+		usr.setRoles(roles);
+		
+		em.persist(usr);	
+	}
 }

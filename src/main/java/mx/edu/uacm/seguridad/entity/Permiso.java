@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Permiso {
@@ -13,9 +12,6 @@ public class Permiso {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombrePermiso;
-	
-	@OneToOne
-	private Rol roles;
 	
 	public Permiso() {
 		
