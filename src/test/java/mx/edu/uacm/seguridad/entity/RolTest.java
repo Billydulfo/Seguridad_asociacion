@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 @SpringBootTest
-public class PermisoTest {
-	private static final Logger log = LogManager.getLogger(PermisoTest.class);
+public class RolTest {
+	private static final Logger log = LogManager.getLogger(RolTest.class);
 	
 	@PersistenceContext
 	private EntityManager em;
@@ -20,18 +20,14 @@ public class PermisoTest {
 	@Test
 	@Transactional
 	@Rollback(false)
-	public void debeGuardarPermisoTest() {
-		log.debug("Entrando al metodo debeGuardarPermisoTest");
-		Permiso p  =  new Permiso();
-		p.setNombrePermiso("Leer");
-		/*
-		Permiso p1  =  new Permiso();
-		p1.setNombrePermiso("Escribir");
-		*/
+	public void debeGuardarRolTest() {
+		log.debug("Entrando al metodo debeGuardarRolTest");	
+		Rol r =  new Rol();
+		r.setNombreRol("Asistente");
 		
-		em.persist(p);	
+		em.persist(r);	
 		
 	}
 	
-
+	
 }
